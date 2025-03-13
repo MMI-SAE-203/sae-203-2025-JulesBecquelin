@@ -1,20 +1,47 @@
 ---
-import PocketBase from "pocketbase";
-const { invite } = Astro.props;
-console.log(invite);
+import Layout from "../layouts/Layout.astro";
+import Card from "./Card.astro";
+import { allFilms, filterByCat } from "../js/backend.mjs";
+
+
+const {id} = Astro.params;
+
+let message ='';
+let films = [];
+if (Astro.request.method === "POST") {
+    const data = await Astro.request.formData();
+
+    console.log(data);
+
+    const cat = data.get("cat") as string;
+    console.log(cat);
+
+    if (["Film", "Documentaire"].includes(cat)) {
+        films = await filterByCat(cat);
+        if(films.length === 0) {
+            message = "Pas de films correspondant à la catégorie recherché";
+            console.log(cat);
+        }
+    } else {
+        message = "Veuillez entrer des valeurs valides pour le prix.";
+        films = await allFilms()  ;
+        console.log(cat);
+    }
+} else {
+    films = await allFilms() || [];
+}
+if (!films){
+    return Astro.redirect ('/film');
+}
 ---
 
-<div class="overflow-x-auto py-4">
-    <div class="flex gap-4">
-        {
-            invite.map((item: any, index: number) => (
-                <img
-                    key={index}
-                    class="w-60 md:w-80 rounded-2xl shadow-lg flex-shrink-0"
-                    src={item.Photo}
-                    alt="Affiche du film"
-                />
-            ))
-        }
-    </div>
-</div>
+
+
+    <form class="ml-20 mt-5 :border:rounded-lg :gap-5:p-3 *:mx-2" action="/film" method="POST">
+        <label for="cat">Choisir une catégorie</label>
+        <select name="cat" id="cat">
+            <option value="Film">Film</option>
+            <option value="Documentaire">Documentaire</option>
+        </select>
+        <input type="submit" value="Filtrer par catégorie" />
+    </form>

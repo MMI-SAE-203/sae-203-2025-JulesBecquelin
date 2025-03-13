@@ -10,7 +10,7 @@ const invite = await getInvites()
 <Layout titre="Galerie de film">
 	
     <div>
-        <div class=" p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 p-6">
             {invite?.map((invites) => <Card1 {...invites} />)}
         </div>
     </div>

@@ -1,48 +1,12 @@
 ---
-import Layout from "../../layouts/Layout.astro"
-const { id } = Astro.params;
-import { getInvites } from "../../js/backend.mjs";
-
-const invite = await getInvites(id)
-if (!invite){
-    return Astro.redirect('/invites')
-}
+import Layout from "../../layouts/Layout.astro";
 import Picture from "astro/components/Picture.astro";
+import {ActiviteById} from "../../js/backend.mjs";
+const { id } = Astro.params;
+const activite = await ActiviteById(id)
+// if (!activite){
+//     return Astro.redirect('/activites')
+// }
+ 
 ---
 
-<Layout titre={invite.Nom}>
-    <div class="max-w-md mx-auto mt-10 bg-white rounded-lg shadow-md overflow-hidden">
-        <Picture
-        class="h-fit w-screen"
-          pictureAttributes={{ class: "w-full h-full object-cover" }}
-          inferSize={true}
-          src={`http://127.0.0.1:8090/api/files/${invite.collectionId}/${invite.id}/${invite.Photo}`}
-          alt=""
-        />
-        
-       
-        <div class="p-4">
-            {invite.Nom}
-          <h2 class="text-xl font-bold mb-2">Titre du film</h2>
-    
-          
-          <p class="text-gray-700 text-base mb-4">
-            {invite.Biographie}
-          </p>
-    
-          
-          <p class="text-gray-600 text-sm mb-2">
-            <span class="font-semibold">Réalisateur&nbsp;:</span>{invite.Realisateur}
-          </p>
-    
-          <p class="text-gray-600 text-sm mb-2">
-            <span class="font-semibold">Bande-annonce&nbsp;:</span> {invite.BA}
-          </p>
-    
-         
-          <p class="text-gray-600 text-sm">
-            <span class="font-semibold">Date de projection&nbsp;:</span> {invite.Date_de_projection}
-          </p>
-        </div>
-      </div>
-</Layout>

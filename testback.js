@@ -38,12 +38,12 @@ import {allFilms,allActivite,allInvite,FilmById,ActiviteById,InviteById,allActiv
 //     }
 
 
-// try{
-//     const a = await InviteById("jlkryd4r1sg78ud");
-//     console.log(JSON.stringify(a,null, 2)) ;
-//     } catch (e) {
-//     console.error(e) ;
-//     }
+try{
+    const a = await InviteById("jlkryd4r1sg78ud");
+    console.log(JSON.stringify(a,null, 2)) ;
+    } catch (e) {
+    console.error(e) ;
+    }
 
 // try{
 //     const a = await allActiviteByInviteId("7dymk6t51ip9lfz");

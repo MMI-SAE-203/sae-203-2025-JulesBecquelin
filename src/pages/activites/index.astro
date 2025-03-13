@@ -3,14 +3,18 @@ import Layout from "../../layouts/Layout.astro";
 import {allActivite} from "../../js/backend.mjs";
 import Card2 from "../../components/Card2.astro";
 const activite = await allActivite()
+
+
 ---
 
 <Layout titre="Galerie d'activité'">
 	
     <div>
-        <div class="  p-6">
+        <div class=" grid grid-cols-1 lg:grid-cols-3 p-6">
             {activite?.map((activite) => <Card2 {...activite} />)}
         </div>
     </div>
+
+    
 	
 </Layout>

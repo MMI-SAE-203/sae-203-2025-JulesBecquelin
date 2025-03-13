@@ -132,10 +132,10 @@ export async function getInvites() {
 
 
 export async function getInvitesPhoto() {
-  const pb1 = new PocketBase(pb);
+
 
   
-  const records = await pb1.collection('Invites').getFullList();
+  const records = await pb.collection('Invites').getFullList();
 
   
   const photos = records.map((record) => ({
@@ -145,4 +145,24 @@ export async function getInvitesPhoto() {
   }));
 
   return photos;
+}
+
+
+export async function filterByCat(categorie) {
+    try{
+        console.log('cat',categorie);
+        let a = await pb.collection('Films').getFullList({
+            sort : '+Date_de_projection'
+            , filter : `Field ~ "${categorie}"`
+        });
+        console.log(a)
+        a = a.map((filme)=>{
+            filme.imageUrl = pb.files.getURL(filme,);
+            return filme;
+        });
+        return a;
+    }catch(error){
+        console.log('Une erreur est survenue en filtrant la liste des films',error);
+        return[];
+    }
 }

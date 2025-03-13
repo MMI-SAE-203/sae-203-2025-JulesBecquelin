@@ -1,17 +1,56 @@
 ---
 import Header from "../../components/Header.astro";
 import Layout from "../../layouts/Layout.astro";
-import {allFilms} from "../../js/backend.mjs";
 import Card from "../../components/Card.astro";
-import { getFilms } from "../../js/backend.mjs";
-const films = await getFilms()
+import { getFilms, filterByCat, allFilms } from "../../js/backend.mjs";
+
+const {id} = Astro.params;
+
+let message ='';
+let films = [];
+if (Astro.request.method === "POST") {
+    const data = await Astro.request.formData();
+
+    console.log(data);
+
+    const cat = data.get("cat") as string;
+    console.log(cat);
+
+    if (["Film", "Documentaire"].includes(cat)) {
+        films = await filterByCat(cat);
+        if(films.length === 0) {
+            message = "Pas de films correspondant à la catégorie recherché";
+            console.log(cat);
+        }
+    } else {
+        message = "Veuillez entrer des valeurs valides pour le prix.";
+        films = await allFilms()  ;
+        console.log(cat);
+    }
+} else {
+    films = await allFilms() || [];
+}
+if (!films){
+    return Astro.redirect ('/film');
+}
 ---
 
+
 <Layout titre="Galerie de film">
-	
-    <div>
-        <div class=" p-6">
-            {films?.map((film) => <Card {...film} />)}
+
+    <form class="ml-20 mt-5 :border:rounded-lg :gap-5:p-3 *:mx-2" action="/film" method="POST">
+        <label for="cat">Choisir une catégorie</label>
+        <select name="cat" id="cat">
+            <option value="Film">Film</option>
+            <option value="Documentaire">Documentaire</option>
+        </select>
+        <input type="submit" value="Filtrer par catégorie" />
+    </form>
+    
+    
+    <div class="">
+        <div class="grid grid-cols-1 lg:grid-cols-3 ">
+            {films.map((film) => <Card {...film} />)}
         </div>
     </div>
 	
