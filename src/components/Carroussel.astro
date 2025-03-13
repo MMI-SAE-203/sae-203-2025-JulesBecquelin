@@ -1,0 +1,20 @@
+---
+import PocketBase from "pocketbase";
+const { invite } = Astro.props;
+console.log(invite);
+---
+
+<div class="overflow-x-auto py-4">
+    <div class="flex gap-4">
+        {
+            invite.map((item: any, index: number) => (
+                <img
+                    key={index}
+                    class="w-60 md:w-80 rounded-2xl shadow-lg flex-shrink-0"
+                    src={item.Photo}
+                    alt="Affiche du film"
+                />
+            ))
+        }
+    </div>
+</div>

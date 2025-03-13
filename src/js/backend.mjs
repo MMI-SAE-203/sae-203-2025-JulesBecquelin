@@ -80,3 +80,69 @@ export async function deleteInviteById(id){
 export async function deleteFilmById(id){
     await pb.collection('Films').delete(id);
 };
+
+
+export async function getFilm(id) {
+    try {
+        let data = await pb.collection('Films').getOne(id);
+        data.imageUrl = pb.files.getURL(data, data.image);
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant le film', error);
+        return null;
+    }
+}
+
+export async function getFilms() {
+    try {
+        let data = await pb.collection('Films').getFullList({
+            sort: 'created',
+        });
+        data = data.map((i) => {
+            i.img= pb.files.getURL(i,i.images);
+            return i;
+        });
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des films', error);
+    }
+}
+
+
+
+export async function getInvites() {
+    try {
+        let data = await pb.collection('Invites').getFullList({
+            sort: 'created',
+        });
+        data = data.map((i) => {
+            i.img= pb.files.getURL(i,i.images);
+            return i;
+        });
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des films', error);
+    }
+}
+
+
+
+
+
+
+
+export async function getInvitesPhoto() {
+  const pb1 = new PocketBase(pb);
+
+  
+  const records = await pb1.collection('Invites').getFullList();
+
+  
+  const photos = records.map((record) => ({
+    id: record.id,
+    photoField: record.Photo,
+    photoUrl: pb.files.getURL(record, record.Photo),
+  }));
+
+  return photos;
+}

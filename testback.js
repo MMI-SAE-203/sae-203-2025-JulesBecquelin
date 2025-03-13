@@ -1,4 +1,4 @@
-import {allFilms,allActivite,allInvite,FilmById,ActiviteById,InviteById,allActiviteByInviteId,allActiviteByInviteName,addNewActivite,addNewInvite,addNewFilm,updateActiviteById,updateInviteById,updateFilmById,deleteActiviteById,deleteInviteById,deleteFilmById} from "./src/js/backend.mjs";
+import {allFilms,allActivite,allInvite,FilmById,ActiviteById,InviteById,allActiviteByInviteId,allActiviteByInviteName,addNewActivite,addNewInvite,addNewFilm,updateActiviteById,updateInviteById,updateFilmById,deleteActiviteById,deleteInviteById,deleteFilmById,getInvitesPhoto} from "./src/js/backend.mjs";
 
 
 // try{
@@ -150,4 +150,10 @@ import {allFilms,allActivite,allInvite,FilmById,ActiviteById,InviteById,allActiv
 //     await deleteInviteById("2dr27un8i5af65s");
 // }catch(e){
 //     console.error(e);
+// }
+
+// try {
+//     await getInvitesPhoto();
+// }catch (e){
+//     console.error(e)
 // }

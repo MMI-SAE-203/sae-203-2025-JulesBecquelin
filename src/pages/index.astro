@@ -1,11 +1,113 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Accueil from '../../assets/Image/image-accueil.png'
+import Carroussel from '../components/Carroussel.astro';
+import { getInvitesPhoto } from '../js/backend.mjs';
+const invite = await getInvitesPhoto()
+
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	
+    <div class="relative">
+        <img class="w-screen h-220 object-cover" style="filter: sepia(1) hue-rotate(335deg) saturate(190%);" src="/assets/Image/imageaccueil.png" alt="">
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <h1 class="text-white text-4xl font-bold text-center">
+            Bienvenue au Festical Vis'Sport
+          </h1>
+          <h2 class="text-white text-xl mt-2 text-center">
+            L’endroit où le Sport et l’Audiovisuel se Rencontrent !
+          </h2>
+          <h2 class="text-2xl text-white absolute bottom-0  p-4 ">19-21 septembre 2025</h2>
+        </div>
+      </div>
+      <div class="flex justify-center items-center">
+      <button class="bg-beige p-3 m-3 text-white rounded-xl  ">Information sur le lieu</button>
+    </div>
+    <h2 class="text-3xl text-center text-white">Un Festival Unique, Alliant Sport et Cinéma !</h2>
+
+    <p class="text-white p-4 text-center">Le Vis'Sport est bien plus qu’un événement : c’est une immersion dans le sport et l’audiovisuel. Découvrez des films captivants, rencontrez des athlètes et participez à des ateliers créatifs pour tous les âges.</p>
+    <br>
+    <p class="text-white p-4 text-center">Rejoignez-nous pour trois jours de découvertes et de partage autour du sport et de ses récits fascinants au cinéma. Une occasion unique d’explorer des sports variés et de vivre des moments inoubliables en famille ou entre amis.</p>
+      
+    
+    
+    
+    <div class="">
+        <ul class="lg">
+            <li class="flex justify-center items-center"><img class="h-200 " src="assets/Image/affiche-du-festival.png" alt=""></li>
+            <li class="text-xl text-bold text-white p-3 text-center">Ce Qui Vous Attend :</li>
+            <li class="text-base text-white p-5">Projections de Films Découvrez une sélection de films uniques, tous liés à l'univers du sport : compétitions épiques, parcours de champions, défis personnels… Une programmation riche et variée vous attend !</li>
+            <li class="text-base text-white p-5">Rencontres et Démonstrations SportivesParticipez à des activités interactives avec des associations sportives locales et des coachs experts, tout en vous amusant. Testez de nouveaux sports ou perfectionnez-vous dans vos disciplines préférées. Ateliers Créatifs</li>
+            <li class="text-base text-white p-5">Initiez-vous à l’art du documentaire sportif et réalisez vos propres mini-films grâce à nos ateliers audiovisuels. Repartez avec votre création personnelle !Expositions Audiovisuelles</li>
+            <li class="text-base text-white p-5">Plongez dans des univers visuels uniques, avec des expositions qui vous feront redécouvrir le sport à travers l’image et le son.</li>
+        </ul>
+    </div>
+    <div class="flex justify-center items-center">
+        <button class="bg-beige p-3 m-3 text-white rounded-xl  ">Accès Au Programme</button>
+      </div>
+      <div class="flex justify-center ">
+        <ul>
+        <li class="flex justify-center "><img class="h-200 " style="filter: sepia(1) hue-rotate(310deg) saturate(120%);" src="/assets/Image/image-accueil.png" alt=""></li>
+        <li class="text-white p-3 flex-col justify-center"><h2 class="text-white text-2xl ">Une Accessibilité Pour Tous !</h2>Que vous soyez sur place ou à distance, Vis'Sport vous offre une plateforme virtuelle pour ne rien manquer. Vous pourrez y suivre les projections en ligne et accéder à des contenus exclusifs : interviews d’athlètes, coulisses des grands événements sportifs, et bien plus encore.</li>
+        
+        </ul>
+      </div>
+      <h2 class="text-white text-3xl flex items-center justify-center ">Liste de nos invités</h2>
+      <div >
+        
+        <ul>
+            <li class="flex justify-center items-center"><img src="/assets/Image/Marie-josé.png" alt=""></li>
+            
+            <li class="text-center justify-center items-center"><h3>Marie-José Pérec</h3>Triple championne olympique d’athlétisme, elle partagera son expérience unique sur la scène internationale et participera à une table ronde sur le dépassement de soi.</li>
+            <li></li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <ul>
+            <li class="flex justify-center items-center"><img src="/assets/Image/Jimmy-page-invite.png" alt=""></li>
+            
+            <li class="text-center justify-center items-center"><h3>Jimmy ChinRéalisateur  </h3>oscarisé de Free Solo et athlète extrême, il animera une masterclass exclusive sur la réalisation de documentaires sportifs.</li>
+            <li></li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <ul>
+            <li class="flex justify-center items-center"><img src="/assets/Image/Tony.png" alt=""></li>
+            
+            <li class="text-center justify-center items-center"><h3>Marie-José Pérec</h3>Triple championne olympique d’athlétisme, elle partagera son expérience unique sur la scène internationale et participera à une table ronde sur le dépassement de soi.</li>
+            <li></li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <ul>
+            <li class="flex justify-center items-center"><img class="h-70" src="/assets/Image/Amelie.png" alt=""></li>
+            
+            <li class="text-center justify-center items-center"><h3>Marie-José Pérec</h3>Triple championne olympique d’athlétisme, elle partagera son expérience unique sur la scène internationale et participera à une table ronde sur le dépassement de soi.</li>
+            <li></li>
+        </ul>
+      </div>
+      <div class="flex justify-center">
+        <button class="bg-beige p-3 m-3 text-white rounded-xl  ">Cliquez ici pour la liste entière des invités</button>
+      </div>
+      <div class="flex-col p-4 ">
+        <h2 class="text-white text-center ">Réservez Vos Billets Dès Maintenant !</h2>
+        <p>Ne manquez pas cet événement unique ! Les places sont limitées, alors réservez vos billets en ligne dès aujourd’hui et profitez d’offres spéciales pour les premiers inscrits.</p>
+      </div>
+      <div class="flex justify-center">
+      <button class="bg-beige p-3 m-3 text-white rounded-xl  ">Je Fonce !</button>
+    </div>
+    <div>
+      <h2 class="p-4 text-center text-white">Remerciements à Nos Partenaires</h2>
+      <p class="text-base text-white">Le festival Vis'Sport 2025 tient à remercier chaleureusement ses partenaires, sans qui cet événement unique n’aurait pu voir le jour. Grâce au soutien de médias prestigieux comme L’Équipe, Eurosport, et France Télévisions, ainsi qu’à l’engagement de leaders audiovisuels tels que Pathé Gaumont, Netflix, et Arte, nous pouvons offrir une programmation riche et inspirante.
+        Nous exprimons également notre gratitude à nos partenaires sportifs, notamment Nike, Adidas, et Decathlon, qui contribuent à dynamiser nos activités et démonstrations. Enfin, un immense merci à la Région Bourgogne-Franche-Comté, à la Ville de Montbéliard, et au Ministère des Sports pour leur soutien institutionnel et leur aide précieuse à promouvoir les valeurs du sport et de la culture.
+        Votre soutien nous permet de faire de Vis'Sport un événement inoubliable pour tous. Merci de partager cette aventure avec nous !</p>
+    </div>
+
 </Layout>
+

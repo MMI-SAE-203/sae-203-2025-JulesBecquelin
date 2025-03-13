@@ -1,0 +1,25 @@
+---
+import Picture from "astro/components/Picture.astro";
+
+const {...invite} = Astro.props;
+---
+
+<div class=" flex justify-center items-center p-28">
+    <div class="bg-gray-100 shadow-lg rounded-lg p-5 w-80 flex flex-col items-center">
+      <div class="w-full  overflow-hidden rounded-lg">
+        <Picture
+          pictureAttributes={{ class: "w-full h-full object-cover" }}
+          inferSize={true}
+          src={`http://127.0.0.1:8090/api/files/${invite.collectionId}/${invite.id}/${invite.Photo}`}
+          alt=""
+        />
+      </div>
+      <div class="mt-4 text-center">
+        <h2 class="text-2xl font-semibold text-gray-900">{invite.Nom}</h2>
+        <p class="text-gray-600 text-sm mt-1"> {invite.Biography}</p>
+        <a class="" href={`/invites/${invite.id}`}>Voir plus</a>
+      </div>
+    </div>
+  </div>
+
+  

@@ -1,0 +1,48 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { getFilm } from "../../js/backend.mjs";
+const { id } = Astro.params;
+
+const film = await getFilm(id)
+if (!film){
+    return Astro.redirect('/Film')
+}
+import Picture from "astro/components/Picture.astro";
+---
+
+<Layout titre={film.Titre}>
+    <div class="max-w-md mx-auto mt-10 bg-white rounded-lg shadow-md overflow-hidden">
+        <Picture
+        class="h-fit w-screen"
+          pictureAttributes={{ class: "w-full h-full object-cover" }}
+          inferSize={true}
+          src={`http://127.0.0.1:8090/api/files/${film.collectionId}/${film.id}/${film.Affiche}`}
+          alt=""
+        />
+        
+       
+        <div class="p-4">
+            {film.Titre}
+          <h2 class="text-xl font-bold mb-2">Titre du film</h2>
+    
+          
+          <p class="text-gray-700 text-base mb-4">
+            {film.Synopsis}
+          </p>
+    
+          
+          <p class="text-gray-600 text-sm mb-2">
+            <span class="font-semibold">Réalisateur&nbsp;:</span>{film.Realisateur}
+          </p>
+    
+          <p class="text-gray-600 text-sm mb-2">
+            <span class="font-semibold">Bande-annonce&nbsp;:</span> {film.BA}
+          </p>
+    
+         
+          <p class="text-gray-600 text-sm">
+            <span class="font-semibold">Date de projection&nbsp;:</span> {film.Date_de_projection}
+          </p>
+        </div>
+      </div>
+</Layout>

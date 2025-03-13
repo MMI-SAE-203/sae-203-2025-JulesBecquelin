@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-beige: #ee8b6e;
+    --color-blanc: #ffffff;
+    --color-bordeau: #a21f2f;
+    --color-background: #670612;
+    --color-jaune: #ffcc59;
+    --color-noir: #1e1e1e;
+    --color-orange: #f03417;
+    --color-marron: #632c31;
+    --color-orange-10: #bf5525;
+  }
+  
+@theme {
+  --font-family: "Anton SC";
+  --font-family-body: "Oswald";
+}
+
+@theme {
+  --STU-1:0.8125rem;
+  --BU: 0.625rem;
+  --SM: 0.6875rem;
+  --BO-2: 1rem;
+  --BO-1: 1.375rem;
+  --HEA-3: 1.125rem;
+  --HEA-2: 1.5rem;
+  --HEA-1: 2.25rem;
+}

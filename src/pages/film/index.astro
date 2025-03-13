@@ -1,0 +1,18 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import {allFilms} from "../../js/backend.mjs";
+import Card from "../../components/Card.astro";
+import { getFilms } from "../../js/backend.mjs";
+const films = await getFilms()
+---
+
+<Layout titre="Galerie de film">
+	
+    <div>
+        <div class=" p-6">
+            {films?.map((film) => <Card {...film} />)}
+        </div>
+    </div>
+	
+</Layout>

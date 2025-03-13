@@ -1,0 +1,76 @@
+---
+import LogoComplet from "../../assets/Icons/Logo-complet.svg";
+const currentPath = Astro.url.pathname;
+
+---
+
+<header class="bg-marron flex items-center justify-between ">
+    <div class="w-8"></div>
+    <div class=" justify-center">
+    <a href="/" class="">
+      <LogoComplet />
+    </a>
+</div>
+
+<nav
+id="menu"
+class="flex-1 px-6 py-12 flex justify-between mt-20 flex-col fixed z-10 inset-0 bg-marron visible opacity-100 max-lg:aria-hidden:invisible max-lg:aria-hidden:opacity-0 lg:mt-0 lg:flex-row lg:static lg:bg-transparent lg:py-6 lg:visible lg:opacity-100"
+aria-hidden="true"
+>
+<ul class="flex flex-col gap-4 lg:flex-row">
+    <li>
+      <a class={`block p-4 rounded-lg text-white ${currentPath === '/properties' ? 'text-beige font-bold max-lg:bg-beige max-lg:rounded-lg' : ''}`} 
+      href="/properties">Profil</a>
+    </li>
+    <li>
+      <a class="block p-4 rounded-lg text-white" href="/">Accueil</a>
+    </li>
+    <li>
+      <a class="block p-4 rounded-lg text-white" href="/">Nos Activités</a>
+    </li>
+    <li>
+      <a class="block p-4 rounded-lg text-white" href="/invites">Nos invités</a>
+    </li>
+    <li>
+      <a class="block p-4 rounded-lg text-white" href="/film">Nos Films</a>
+    </li>
+    <li>
+        <a class="block p-4 rounded-lg text-white" href="/">À Propos</a>
+      </li>
+      <li>
+        <a class="block p-4 rounded-lg text-white" href="/">Billeterie</a>
+      </li>
+  </ul>
+    </nav>
+    <div>
+        <button
+    id="menu-btn"
+    class="group relative z-10 flex h-5 w-7 flex-col justify-between lg:hidden *:block *:ease *:h-0.5 *:w-full *:transform *:rounded-full *:bg-beige *:transition *:duration-300"
+    aria-label="Menu"
+    aria-controls="menu"
+    aria-expanded="false"
+  >
+    <span class="group-aria-expanded:translate-y-[5px] group-aria-expanded:rotate-45"></span>
+    <span class="group-aria-expanded:-translate-y-[5px] group-aria-expanded:-rotate-45"></span>
+  </button>
+    </div>
+  </header>
+
+  <script>
+  const toggle = document.querySelector("#menu-btn");
+  const nav = document.querySelector("#menu");
+  const page = document.body;
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.ariaExpanded === "true";
+      const isClosed = !isOpen;
+      // Mise à jour des attributs ARIA pour accessibilité
+      toggle.ariaExpanded = String(isClosed);
+      nav.ariaHidden = String(isOpen);
+      page.classList.toggle("noscroll", isClosed);
+    });
+  }
+
+  </script>
+  
