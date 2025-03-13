@@ -37,15 +37,21 @@ if (!films){
 
 
 <Layout titre="Galerie de film">
-
-    <form class="ml-20 mt-5 :border:rounded-lg :gap-5:p-3 *:mx-2" action="/film" method="POST">
-        <label for="cat">Choisir une catégorie</label>
-        <select name="cat" id="cat">
+    
+    <form class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md" action="/film" method="POST">
+        <div class="mb-4">
+          <label for="cat" class="block text-gray-700 text-sm font-bold mb-2">
+            Choisir une catégorie
+          </label>
+          <select name="cat" id="cat" class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-3 rounded focus:outline-none focus:bg-white focus:border-gray-500">
             <option value="Film">Film</option>
             <option value="Documentaire">Documentaire</option>
-        </select>
-        <input type="submit" value="Filtrer par catégorie" />
-    </form>
+          </select>
+        </div>
+        <div class="flex items-center justify-end">
+          <input type="submit" value="Filtrer par catégorie" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        </div>
+      </form>
     
     
     <div class="">
