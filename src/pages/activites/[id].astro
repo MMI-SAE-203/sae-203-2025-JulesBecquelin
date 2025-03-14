@@ -1,9 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Picture from "astro/components/Picture.astro";
-import {ActiviteById} from "../../js/backend.mjs";
+import {getActiviteId} from "../../js/backend.mjs";
 const { id } = Astro.params;
-const activite = await ActiviteById( id )
+const activite = await getActiviteId( id )
 if (!activite){
     return Astro.redirect('/activites')
 }
@@ -12,12 +12,13 @@ if (!activite){
 <Layout >
     <div>
     <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md m-30">
-        <Picture
+        <img src={activite.img} alt="activite.Titre">
+        <!-- <Picture
           pictureAttributes={{ class: "w-full h-full object-cover" }}
           inferSize={true}
           src={`https://vissport.jules-becquelin.fr:443/api/files/${activite.collectionId}/${activite.id}/${activite.Affiche}`}
           alt=""
-        />
+        /> -->
         <p class="text-gray-600 text-sm mb-2">
             <strong>{activite.Titre}</strong>
         </p>

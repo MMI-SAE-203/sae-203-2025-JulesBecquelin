@@ -24,11 +24,11 @@ if (Astro.request.method === "POST") {
         }
     } else {
         message = "Veuillez entrer des valeurs valides pour le prix.";
-        films = await allFilms()  ;
+        films = await getFilms()  ;
         console.log(cat);
     }
 } else {
-    films = await allFilms() || [];
+    films = await getFilms() || [];
 }
 if (!films){
     return Astro.redirect ('/film');

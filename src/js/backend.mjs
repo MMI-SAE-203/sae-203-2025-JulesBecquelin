@@ -85,7 +85,7 @@ export async function deleteFilmById(id){
 export async function getFilm(id) {
     try {
         let data = await pb.collection('Films').getOne(id);
-        data.imageUrl = pb.files.getURL(data, data.image);
+        data.img = pb.files.getURL(data, data.Affiche);
         return data;
     } catch (error) {
         console.log('Une erreur est survenue en lisant le film', error);
@@ -96,10 +96,25 @@ export async function getFilm(id) {
 export async function getFilms() {
     try {
         let data = await pb.collection('Films').getFullList({
+            sort: '+created',
+        });
+        data = data.map((i) => {
+            i.img= pb.files.getURL(i,i.Affiche);
+            return i;
+        });
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des films', error);
+    }
+}
+
+export async function getActivites() {
+    try {
+        let data = await pb.collection('Activites').getFullList({
             sort: 'created',
         });
         data = data.map((i) => {
-            i.img= pb.files.getURL(i,i.images);
+            i.img= pb.files.getURL(i,i.Affiche);
             return i;
         });
         return data;
@@ -116,12 +131,34 @@ export async function getInvites() {
             sort: 'created',
         });
         data = data.map((i) => {
-            i.img= pb.files.getURL(i,i.images);
+            i.img= pb.files.getURL(i,i.Photo);
             return i;
         });
         return data;
     } catch (error) {
         console.log('Une erreur est survenue en lisant la liste des films', error);
+    }
+}
+
+export async function getInviteId(id) {
+    try {
+        let data = await pb.collection('Invites').getOne(id);
+        data.img = pb.files.getURL(data, data.Photo);
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant le film', error);
+        return null;
+    }
+}
+
+export async function getActiviteId(id) {
+    try {
+        let data = await pb.collection('Activites').getOne(id);
+        data.img = pb.files.getURL(data, data.Affiche);
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant le film', error);
+        return null;
     }
 }
 
@@ -157,7 +194,7 @@ export async function filterByCat(categorie) {
         });
         console.log(a)
         a = a.map((filme)=>{
-            filme.imageUrl = pb.files.getURL(filme,);
+            filme.img = pb.files.getURL(filme,);
             return filme;
         });
         return a;

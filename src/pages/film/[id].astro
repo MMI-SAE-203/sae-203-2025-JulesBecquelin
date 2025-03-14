@@ -12,13 +12,14 @@ import Picture from "astro/components/Picture.astro";
 
 <Layout titre={film.Titre}>
     <div class="max-w-md mx-auto mt-10 bg-white rounded-lg shadow-md overflow-hidden">
-        <Picture
+      <img src={film.img} alt={film.Titre}>
+        <!-- <Picture
         class="h-fit w-screen"
           pictureAttributes={{ class: "w-full h-full object-cover" }}
           inferSize={true}
           src={`https://vissport.jules-becquelin.fr:443/api/files/${film.collectionId}/${film.id}/${film.Affiche}`}
           alt=""
-        />
+        /> -->
         
        
         <div class="p-4">

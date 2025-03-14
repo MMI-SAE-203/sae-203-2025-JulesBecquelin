@@ -1,8 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import {allActivite} from "../../js/backend.mjs";
+import {getActivites} from "../../js/backend.mjs";
 import Card2 from "../../components/Card2.astro";
-const activite = await allActivite()
+const activite = await getActivites()
 
 
 ---
