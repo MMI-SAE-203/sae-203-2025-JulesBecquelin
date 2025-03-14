@@ -1,12 +1,29 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Picture from "astro/components/Picture.astro";
-import {ActiviteById} from "../../js/backend.mjs";
+import {InviteById} from "../../js/backend.mjs";
 const { id } = Astro.params;
-const activite = await ActiviteById(id)
-// if (!activite){
-//     return Astro.redirect('/activites')
-// }
- 
----
+const invite = await InviteById(id)
+if (!invite){
+    return Astro.redirect('/invites')
+}
 
+
+---
+<Layout>
+<div>
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md m-30">
+        <Picture
+          pictureAttributes={{ class: "w-full h-full object-cover" }}
+          inferSize={true}
+          src={`https://vissport.jules-becquelin.fr:443/api/files/${invite.collectionId}/${invite.id}/${invite.Photo}`}
+          alt=""
+        />
+        <p class="text-gray-600 text-sm mb-2">
+            <strong>{invite.Nom}</strong>
+        </p>
+        <div set:html={invite.Biographie} class="text-gray-600 text-sm mb-2"></div>
+        
+      </div>
+    </div>
+</Layout>
